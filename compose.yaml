@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    restart: always
+    image: 'postgres:13-alpine'
+    environment:
+      - 'POSTGRES_DB=fdrts'
+      - 'POSTGRES_PASSWORD=12345678'
+      - 'POSTGRES_USER=postgres'
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  rabbitmq:
+    image: 'pcloud/rabbitmq-stomp'
+    hostname: rabbitmq
+    environment:
+        RABBITMQ_DEFAULT_USER: admin
+        RABBITMQ_DEFAULT_PASS: admin
+    ports:
+        - "5672:5672"
+        - "15672:15672"
+        - "61613:61613"
+    volumes:
+        - '~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/mnesia/'
+
+volumes:
+  postgres-data:
+  rabbitmq:

@@ -1,0 +1,12 @@
+spring:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fdrts
+    username: postgres
+    password: 12345678
+
+  jooq:
+    sql-dialect: postgres
+
+  application:
+    name: fdrts-core
