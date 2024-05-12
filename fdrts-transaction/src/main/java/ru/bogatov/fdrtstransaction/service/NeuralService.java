@@ -10,7 +10,7 @@ import ru.bogatov.fdrtstransaction.model.TransactionEvent;
 import java.time.OffsetDateTime;
 
 @Service
-public class NeuralServiceClient {
+public class NeuralService {
 
     @Autowired
     WebClient neuralServiceClient;

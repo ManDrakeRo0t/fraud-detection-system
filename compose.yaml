@@ -25,6 +25,11 @@ services:
     volumes:
         - '~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/mnesia/'
 
+  fdrts-network:
+    build: ./fdrts-neural/fdrts-neural
+    ports:
+      - "8082:8082"
+
 volumes:
   postgres-data:
   rabbitmq:

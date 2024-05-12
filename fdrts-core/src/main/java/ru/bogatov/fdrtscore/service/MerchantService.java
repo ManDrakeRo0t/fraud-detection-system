@@ -1,10 +1,13 @@
-package ru.bogatov.fdrtcore.service;
+package ru.bogatov.fdrtscore.service;
 
 import org.springframework.stereotype.Service;
-import ru.bogatov.fdrtcore.model.database.jooq.tables.pojos.Merchant;
-import ru.bogatov.fdrtcore.repository.MerchantRepository;
+import ru.bogatov.fdrtscore.model.database.jooq.tables.pojos.Customer;
+import ru.bogatov.fdrtscore.model.database.jooq.tables.pojos.Merchant;
+import ru.bogatov.fdrtscore.model.dto.response.PaginationResponse;
+import ru.bogatov.fdrtscore.repository.MerchantRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class MerchantService {
@@ -20,7 +23,30 @@ public class MerchantService {
         merchantRepository.batchInsert(merchants);
     }
 
-    public void trancuate() {
-        merchantRepository.trancuate();
+    public void trancuate(Boolean migrated) {
+        if (migrated) {
+            merchantRepository.trancuateMigrated();
+        } else {
+            merchantRepository.trancuate();
+        }
+    }
+
+    public Merchant findByName(String name) {
+        return merchantRepository.findByName(name);
+    }
+
+    public PaginationResponse<Merchant, String> list(String lastToken, Integer limit) {
+        return merchantRepository.list(lastToken, limit);
+    }
+
+    public Merchant create(Merchant merchant) {
+        merchant.setId(UUID.randomUUID());
+        merchant.setMigrated(false);
+        merchantRepository.create(merchant);
+        return merchantRepository.findById(merchant.getId());
+    }
+
+    public List<String> getAllNames() {
+        return merchantRepository.getAllNames();
     }
 }

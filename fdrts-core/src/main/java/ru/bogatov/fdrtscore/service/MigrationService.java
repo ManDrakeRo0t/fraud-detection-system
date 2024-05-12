@@ -1,13 +1,14 @@
-package ru.bogatov.fdrtcore.service;
+package ru.bogatov.fdrtscore.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
-import ru.bogatov.fdrtcore.model.database.jooq.tables.pojos.Customer;
-import ru.bogatov.fdrtcore.model.database.jooq.tables.pojos.Merchant;
-import ru.bogatov.fdrtcore.model.dto.migration.MigrationResult;
-import ru.bogatov.fdrtcore.model.dto.migration.MigrationStatus;
+import ru.bogatov.fdrtscore.model.database.jooq.tables.pojos.Customer;
+import ru.bogatov.fdrtscore.model.database.jooq.tables.pojos.Merchant;
+import ru.bogatov.fdrtscore.model.dto.migration.DatasetLine;
+import ru.bogatov.fdrtscore.model.dto.migration.MigrationResult;
+import ru.bogatov.fdrtscore.model.dto.migration.MigrationStatus;
+import ru.bogatov.fdrtscore.model.dto.TransactionEvent;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,6 +26,8 @@ public class MigrationService {
 
     private final MerchantService merchantService;
 
+    private final TransactionSenderService senderService;
+
     private final MigrationResult state;
 
     private File migrationData;
@@ -32,9 +35,10 @@ public class MigrationService {
     private int batchSize = 100;
 
 
-    public MigrationService(CustomerService customerService, MerchantService merchantService) {
+    public MigrationService(CustomerService customerService, MerchantService merchantService, TransactionSenderService senderService) {
         this.customerService = customerService;
         this.merchantService = merchantService;
+        this.senderService = senderService;
         state = MigrationResult.builder()
                 .status(MigrationStatus.NOT_STARTED)
                 .createdCustomers(0)
@@ -62,8 +66,8 @@ public class MigrationService {
         state.setCreatedMerchants(0);
         state.setEntitiesCount(0);
 
-        customerService.trancuate();
-        merchantService.trancuate();
+        customerService.trancuate(true);
+        merchantService.trancuate(true);
 
         Executors.newSingleThreadExecutor().execute(() -> {
             Set<String> createdCustomers = new HashSet<>();
@@ -79,12 +83,16 @@ public class MigrationService {
                 while (!values.isEmpty()) {
                     List<Customer> customers = new ArrayList<>();
                     List<Merchant> merchants = new ArrayList<>();
+                    List<TransactionEvent> transactions = new ArrayList<>();
+
+
                     state.setLinesProcessed(state.getLinesProcessed() + values.size());
                     values.forEach(line -> {
-                        Pair<Customer, Merchant> data = readFromLine(line);
+                        DatasetLine data = readFromLine(line);
 
-                        Customer customer = data.getKey();
-                        Merchant merchant = data.getValue();
+                        Customer customer = data.getCustomer();
+                        Merchant merchant = data.getMerchant();
+
 
                         if (!createdCustomers.contains(customer.getCcNum())) {
                             createdCustomers.add(customer.getCcNum());
@@ -104,6 +112,7 @@ public class MigrationService {
                     customerService.batchInsert(customers);
                     merchantService.batchInsert(merchants);
 
+                    //senderService.sendTransactions(transactions);
 
                     values = readBatch(scanner);
                 }
@@ -142,7 +151,7 @@ public class MigrationService {
         return values;
     }
 
-    private Pair<Customer, Merchant> readFromLine(String line) {
+    private DatasetLine readFromLine(String line) {
         List<String> data = List.of(line.split(","));
         List<String> normDate = new ArrayList<>();
 
@@ -156,10 +165,12 @@ public class MigrationService {
             }
         }
 
+
         Merchant merchant = new Merchant();
         merchant.setLat(Float.valueOf(normDate.get(20)));
         merchant.setLong(Float.valueOf(normDate.get(21)));
         merchant.setName(normDate.get(3));
+        merchant.setMigrated(true);
 
         Customer customer = new Customer();
         customer.setCcNum(normDate.get(2));
@@ -175,8 +186,14 @@ public class MigrationService {
         customer.setGender(!Objects.equals(normDate.get(8), "F"));
         customer.setFirstName(normDate.get(6));
         customer.setLastName(normDate.get(7));
+        customer.setMigrated(true);
 
-        return Pair.of(customer, merchant);
+
+        DatasetLine datasetLine = new DatasetLine();
+
+        datasetLine.setCustomer(customer);
+        datasetLine.setMerchant(merchant);
+        return datasetLine;
     }
 
 

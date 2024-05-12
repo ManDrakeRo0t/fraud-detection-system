@@ -9,17 +9,21 @@ import java.util.List;
 import static ru.bogatov.fdrtscore.config.rabbit.RabbitConfig.TRANSACTION_EXCHANGE;
 
 @Service
-public class TransactionMigrationSenderService {
+public class TransactionSenderService {
 
     private final RabbitTemplate rabbitTemplate;
 
-    public TransactionMigrationSenderService(RabbitTemplate rabbitTemplate) {
+    public TransactionSenderService(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
 
 
     public void sendTransactions(List<TransactionEvent> list) {
         list.forEach(this::sendEvent);
+    }
+
+    public void sendTransactionEvent(TransactionEvent event) {
+        this.sendEvent(event);
     }
 
     private void sendEvent(TransactionEvent transaction) {

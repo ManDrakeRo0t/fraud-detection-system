@@ -1,4 +1,4 @@
-package ru.bogatov.fdrttransaction;
+package ru.bogatov.fdrtcore;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

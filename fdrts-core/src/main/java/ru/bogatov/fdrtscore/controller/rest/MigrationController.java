@@ -1,12 +1,12 @@
-package ru.bogatov.fdrtcore.controller.rest;
+package ru.bogatov.fdrtscore.controller.rest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.bogatov.fdrtcore.model.dto.migration.MigrationResult;
-import ru.bogatov.fdrtcore.service.MigrationService;
+import ru.bogatov.fdrtscore.model.dto.migration.MigrationResult;
+import ru.bogatov.fdrtscore.service.MigrationService;
 
 
 @RestController

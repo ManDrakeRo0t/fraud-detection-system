@@ -1,0 +1,35 @@
+server:
+  port: 8081
+
+fdrts-transaction:
+  webclient:
+    neural-service:
+      host: localhost
+      port: 8082
+
+
+spring:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fdrts-tr
+    username: postgres
+    password: 12345678
+  flyway:
+    enabled: true
+
+  rabbitmq:
+    host: localhost
+    username: admin
+    password: admin
+
+  jooq:
+    sql-dialect: postgres
+
+  application:
+    name: fdrts-transaction
+
+logging:
+  level:
+    org.flywaydb.core: DEBUG
+
+

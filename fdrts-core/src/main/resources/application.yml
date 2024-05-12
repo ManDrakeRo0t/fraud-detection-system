@@ -10,3 +10,8 @@ spring:
 
   application:
     name: fdrts-core
+
+  rabbitmq:
+    host: localhost
+    username: admin
+    password: admin

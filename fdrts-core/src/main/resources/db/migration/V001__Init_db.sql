@@ -12,7 +12,8 @@ create table customer (
 	job         varchar(60),
 	city_pop    integer,
 	lat         REAL ,
-	long        REAL
+	long        REAL,
+	migrated    bool
 );
 
 
@@ -20,7 +21,8 @@ create table merchant (
 	id          uuid         not null default gen_random_uuid(),
 	name        varchar(60),
 	lat         REAL ,
-	long        REAL
+	long        REAL,
+    migrated    bool
 );
 
 
