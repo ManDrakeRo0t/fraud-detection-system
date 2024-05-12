@@ -1,11 +1,11 @@
-package ru.bogatov.fdrtscore.repository;
+package ru.bogatov.fdrtcore.repository;
 
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.bogatov.fdrtscore.model.database.jooq.Tables;
-import ru.bogatov.fdrtscore.model.database.jooq.tables.pojos.Merchant;
-import ru.bogatov.fdrtscore.model.database.jooq.tables.records.MerchantRecord;
+import ru.bogatov.fdrtcore.model.database.jooq.Tables;
+import ru.bogatov.fdrtcore.model.database.jooq.tables.pojos.Merchant;
+import ru.bogatov.fdrtcore.model.database.jooq.tables.records.MerchantRecord;
 
 import java.util.List;
 

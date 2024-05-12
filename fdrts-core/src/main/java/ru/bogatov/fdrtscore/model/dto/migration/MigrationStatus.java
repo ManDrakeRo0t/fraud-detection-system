@@ -1,4 +1,4 @@
-package ru.bogatov.fdrtscore.model.dto.migration;
+package ru.bogatov.fdrtcore.model.dto.migration;
 
 public enum MigrationStatus {
     NOT_STARTED,

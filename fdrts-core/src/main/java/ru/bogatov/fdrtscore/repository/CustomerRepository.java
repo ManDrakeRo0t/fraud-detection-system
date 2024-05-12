@@ -1,10 +1,10 @@
-package ru.bogatov.fdrtscore.repository;
+package ru.bogatov.fdrtcore.repository;
 
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Component;
-import ru.bogatov.fdrtscore.model.database.jooq.Tables;
-import ru.bogatov.fdrtscore.model.database.jooq.tables.pojos.Customer;
-import ru.bogatov.fdrtscore.model.database.jooq.tables.records.CustomerRecord;
+import ru.bogatov.fdrtcore.model.database.jooq.Tables;
+import ru.bogatov.fdrtcore.model.database.jooq.tables.pojos.Customer;
+import ru.bogatov.fdrtcore.model.database.jooq.tables.records.CustomerRecord;
 
 import java.util.List;
 

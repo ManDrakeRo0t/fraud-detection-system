@@ -1,4 +1,4 @@
-package ru.bogatov.fdrtscore;
+package ru.bogatov.fdrtcore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

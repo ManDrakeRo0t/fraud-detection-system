@@ -1,13 +1,13 @@
-package ru.bogatov.fdrtscore.service;
+package ru.bogatov.fdrtcore.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
-import ru.bogatov.fdrtscore.model.database.jooq.tables.pojos.Customer;
-import ru.bogatov.fdrtscore.model.database.jooq.tables.pojos.Merchant;
-import ru.bogatov.fdrtscore.model.dto.migration.MigrationResult;
-import ru.bogatov.fdrtscore.model.dto.migration.MigrationStatus;
+import ru.bogatov.fdrtcore.model.database.jooq.tables.pojos.Customer;
+import ru.bogatov.fdrtcore.model.database.jooq.tables.pojos.Merchant;
+import ru.bogatov.fdrtcore.model.dto.migration.MigrationResult;
+import ru.bogatov.fdrtcore.model.dto.migration.MigrationStatus;
 
 import java.io.File;
 import java.io.FileNotFoundException;

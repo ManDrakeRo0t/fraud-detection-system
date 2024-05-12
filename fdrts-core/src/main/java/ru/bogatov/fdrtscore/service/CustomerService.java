@@ -1,8 +1,8 @@
-package ru.bogatov.fdrtscore.service;
+package ru.bogatov.fdrtcore.service;
 
 import org.springframework.stereotype.Service;
-import ru.bogatov.fdrtscore.model.database.jooq.tables.pojos.Customer;
-import ru.bogatov.fdrtscore.repository.CustomerRepository;
+import ru.bogatov.fdrtcore.model.database.jooq.tables.pojos.Customer;
+import ru.bogatov.fdrtcore.repository.CustomerRepository;
 
 import java.util.List;
 

@@ -1,8 +1,7 @@
-package ru.bogatov.fdrtscore.model.dto.migration;
+package ru.bogatov.fdrtcore.model.dto.migration;
 
 import lombok.Builder;
 import lombok.Data;
-import org.jooq.impl.QOM;
 
 import java.time.OffsetDateTime;
 
