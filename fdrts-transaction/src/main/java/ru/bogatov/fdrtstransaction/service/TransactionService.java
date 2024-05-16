@@ -10,6 +10,7 @@ import ru.bogatov.fdrtstransaction.model.database.jooq.tables.pojos.TransactionH
 import ru.bogatov.fdrtstransaction.repository.TransactionRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 import static ru.bogatov.fdrtstransaction.config.WebSocketConfig.TOPIC_DESTINATION_PREFIX;
 
@@ -28,6 +29,19 @@ public class TransactionService {
 
     public void create(TransactionHistory transactionHistory) {
         transactionRepository.insert(transactionHistory);
+    }
+
+    public List<TransactionHistory> getCustomerTransactions(String ccNUm) {
+        return transactionRepository.getCustomerTransactions(ccNUm);
+    }
+
+    public List<TransactionHistory> getMerchantTransactions(String name) {
+        return transactionRepository.getMerchantTransactions(name);
+    }
+
+
+    public TransactionHistory getById(UUID id) {
+        return transactionRepository.getById(id);
     }
 
     public void trancuate(boolean migrated) {

@@ -1,6 +1,8 @@
 <template>
   <div>
     <DefaultHeader/>
+
+     <CustomerList></CustomerList>
   </div>
 </template>
 
@@ -8,8 +10,10 @@
 
 
 
+
+
 export default {
   name: 'CustomersPage',
-  
+
 }
 </script>

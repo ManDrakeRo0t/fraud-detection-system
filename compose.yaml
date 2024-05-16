@@ -30,6 +30,35 @@ services:
     ports:
       - "8082:8082"
 
+  core-app:
+    build: ./fdrts-core
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - rabbitmq
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/fdrts
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 12345678
+      SPRING_RABBITMQ_HOST: rabbitmq
+
+  transaction-app:
+    build: ./fdrts-transaction
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+      - rabbitmq
+      - core-app
+      - fdrts-network
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/fdrts-tr
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 12345678
+      SPRING_RABBITMQ_HOST: rabbitmq
+      FDRTS_TRANSACTION_WEBCLIENT_NEURAL_SERVICE_HOST: fdrts-network
+
 volumes:
   postgres-data:
   rabbitmq:

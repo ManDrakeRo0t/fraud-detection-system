@@ -120,53 +120,61 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.jooq</groupId>
-				<artifactId>jooq-codegen-maven</artifactId>
-				<version>${jooq.version}</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<!-- JDBC connection parameters -->
-					<jdbc>
-						<driver>org.postgresql.Driver</driver>
-						<url>jdbc:postgresql://localhost:5432/fdrts</url>
-						<user>postgres</user>
-						<password>12345678</password>
-					</jdbc>
-					<!-- Generator parameters -->
-					<generator>
-						<database>
-							<name>
-								org.jooq.meta.postgres.PostgresDatabase
-							</name>
-							<includes>.*</includes>
-							<excludes>public.flyway_schema_history</excludes>
-							<inputSchema>public</inputSchema>
-						</database>
-						<generate>
-							<pojos>true</pojos>
-							<!-- Generate the DAO classes -->
-							<daos>false</daos>-->
-							<!-- Annotate DAOs (and other types) with spring annotations, such as @Repository and @Autowired
-                                 for auto-wiring the Configuration instance, e.g. from Spring Boot's jOOQ starter -->
-							<!--									<springAnnotations>true</springAnnotations>&ndash;&gt;-->
-							<!-- Generate Spring-specific DAOs containing @Transactional annotations -->
-							<!--                  <springDao>true</springDao>-->
-						</generate>
-						<target>
-							<packageName>ru.bogatov.fdrtscore.model.database.jooq</packageName>
-							<directory>src/main/java</directory>
-						</target>
-					</generator>
+					<source>17</source>
+					<target>17</target>
 				</configuration>
-				<executions>
-					<execution>
-						<id>generate-postgres</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.jooq</groupId>-->
+<!--				<artifactId>jooq-codegen-maven</artifactId>-->
+<!--				<version>${jooq.version}</version>-->
+<!--				<configuration>-->
+<!--					&lt;!&ndash; JDBC connection parameters &ndash;&gt;-->
+<!--					<jdbc>-->
+<!--						<driver>org.postgresql.Driver</driver>-->
+<!--						<url>jdbc:postgresql://localhost:5432/fdrts</url>-->
+<!--						<user>postgres</user>-->
+<!--						<password>12345678</password>-->
+<!--					</jdbc>-->
+<!--					&lt;!&ndash; Generator parameters &ndash;&gt;-->
+<!--					<generator>-->
+<!--						<database>-->
+<!--							<name>-->
+<!--								org.jooq.meta.postgres.PostgresDatabase-->
+<!--							</name>-->
+<!--							<includes>.*</includes>-->
+<!--							<excludes>public.flyway_schema_history</excludes>-->
+<!--							<inputSchema>public</inputSchema>-->
+<!--						</database>-->
+<!--						<generate>-->
+<!--							<pojos>true</pojos>-->
+<!--							&lt;!&ndash; Generate the DAO classes &ndash;&gt;-->
+<!--							<daos>false</daos>&ndash;&gt;-->
+<!--							&lt;!&ndash; Annotate DAOs (and other types) with spring annotations, such as @Repository and @Autowired-->
+<!--                                 for auto-wiring the Configuration instance, e.g. from Spring Boot's jOOQ starter &ndash;&gt;-->
+<!--							&lt;!&ndash;									<springAnnotations>true</springAnnotations>&ndash;&gt;&ndash;&gt;-->
+<!--							&lt;!&ndash; Generate Spring-specific DAOs containing @Transactional annotations &ndash;&gt;-->
+<!--							&lt;!&ndash;                  <springDao>true</springDao>&ndash;&gt;-->
+<!--						</generate>-->
+<!--						<target>-->
+<!--							<packageName>ru.bogatov.fdrtscore.model.database.jooq</packageName>-->
+<!--							<directory>src/main/java</directory>-->
+<!--						</target>-->
+<!--					</generator>-->
+<!--				</configuration>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>generate-postgres</id>-->
+<!--						<phase>generate-sources</phase>-->
+<!--						<goals>-->
+<!--							<goal>generate</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 		</plugins>
 
 	</build>
