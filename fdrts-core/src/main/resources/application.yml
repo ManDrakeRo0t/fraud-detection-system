@@ -1,4 +1,8 @@
+
+
+
 spring:
+
 
   datasource:
     url: jdbc:postgresql://localhost:5432/fdrts
@@ -15,3 +19,10 @@ spring:
     host: localhost
     username: admin
     password: admin
+
+  servlet:
+    multipart:
+      max-file-size: 400MB
+      max-request-size: 400MB
+
+

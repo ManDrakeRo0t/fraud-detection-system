@@ -5,7 +5,7 @@
          <div class="container" style="width: 80%">
             <div>
                <div class="mb-2">
-                  <label class="mr-5" for="delay">Delay</label>
+                  <label class="mr-5" for="delay">Задержка</label>
                   <b-form-spinbutton inline
                                      id="delay"
                                      v-model="delay"
@@ -15,7 +15,7 @@
                   ></b-form-spinbutton>
                </div>
                <div class="mb-2">
-                  <label class="mr-5" for="count">Count</label>
+                  <label class="mr-5" for="count">Кол-во</label>
                   <b-form-spinbutton inline
                                      id="count"
                                      v-model="count"
@@ -25,7 +25,7 @@
                   ></b-form-spinbutton>
                </div>
                <div>
-                  <label class="mr-3" for="fraud">Fraud level</label>
+                  <label class="mr-3" for="fraud">Мошенничество</label>
                   <b-form-spinbutton inline
                                      id="fraud"
                                      v-model="fraud"
@@ -35,7 +35,7 @@
                   ></b-form-spinbutton>
                </div>
             </div>
-            <b-button class="mt-3" @click="emulate" variant="primary" >Emulate</b-button>
+            <b-button class="mt-3" @click="emulate" variant="primary" >Начать эмуляцию</b-button>
          </div>
       </div>
       <div class="close" @click="$emit('close-modal')">

@@ -5,15 +5,15 @@
          <div class="container" style="width: 80%">
             <div class="row mt-2">
                <input type="text" style="margin-bottom: 10px" id="parentName" v-model="ccNum" class="form-control"
-                      placeholder="ccNum" required autofocus>
+                      placeholder="Номер клиента" required autofocus>
             </div>
             <div class="row mt-2">
                <input type="text" style="margin-bottom: 10px" id="parentName" v-model="merchantName" class="form-control"
-                      placeholder="merchant Name" required autofocus>
+                      placeholder="Продавец" required autofocus>
             </div>
             <div class="row mt-2">
                <input type="number" style="margin-bottom: 10px" id="parentName" v-model="amount" class="form-control"
-                      placeholder="Amount" required autofocus>
+                      placeholder="Сумма" required autofocus>
             </div>
             <div class="row mt-2">
                <b-form-select v-model="category" :options="categories"></b-form-select>
@@ -30,9 +30,9 @@
                value="accepted"
                unchecked-value="not_accepted"
             >
-               Validate
+               Валидировать
             </b-form-checkbox>
-            <b-button class="mt-3" @click="create" variant="primary" >create</b-button>
+            <b-button class="mt-3" @click="create" variant="primary" >Отправить</b-button>
          </div>
       </div>
       <div class="close" @click="$emit('close-modal')">

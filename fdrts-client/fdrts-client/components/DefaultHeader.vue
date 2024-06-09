@@ -10,26 +10,26 @@
       <EmulationTransaction @close-modal="transactionEmulationModal=false" v-if="transactionEmulationModal"></EmulationTransaction>
 
       <div style="text-align: center; font-size: large; ">
-         <h4>Fraud detection real-time system <span class="legit" v-if="$store.state.transactionClient.isConnected">
+         <h4>FDRTS Обнаружение мошенничества в реальном времени <span class="legit" v-if="$store.state.transactionClient.isConnected">
          </span>
             <span class="fraud" v-else>
          </span></h4>
       </div>
       <b-nav tabs align="center">
-         <b-nav-item exact exact-active-class="active" to="/">Map</b-nav-item>
-         <b-nav-item exact exact-active-class="active" to="/customers">Customers</b-nav-item>
-         <b-nav-item exact exact-active-class="active" to="/merchants">Merchants</b-nav-item>
+         <b-nav-item exact exact-active-class="active" to="/">Карта</b-nav-item>
+         <b-nav-item exact exact-active-class="active" to="/customers">Клиенты</b-nav-item>
+         <b-nav-item exact exact-active-class="active" to="/merchants">Продавцы</b-nav-item>
          <b-nav-item-dropdown
             id="my-nav-dropdown"
-            text="Actions"
+            text="Действия"
             toggle-class="nav-link-custom"
             right
          >
-            <b-dropdown-item @click="customerCreationModal=true">Create customer</b-dropdown-item>
-            <b-dropdown-item @click="merchantCreationModal=true">Create merchant</b-dropdown-item>
-            <b-dropdown-item @click="transactionCreationModal=true">Create transaction</b-dropdown-item>
+            <b-dropdown-item @click="customerCreationModal=true">Создать клиента</b-dropdown-item>
+            <b-dropdown-item @click="merchantCreationModal=true">Создать продавца</b-dropdown-item>
+            <b-dropdown-item @click="transactionCreationModal=true">Создать транзакцию</b-dropdown-item>
             <b-dropdown-divider></b-dropdown-divider>
-            <b-dropdown-item @click="transactionEmulationModal=true">Emulate activity</b-dropdown-item>
+            <b-dropdown-item @click="transactionEmulationModal=true">Эмуляция активности</b-dropdown-item>
          </b-nav-item-dropdown>
       </b-nav>
    </div>

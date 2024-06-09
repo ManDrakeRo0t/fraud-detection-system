@@ -11,5 +11,5 @@ RUN mvn clean package -Pprod -DskipTests
 FROM openjdk:17.0.1-jdk-slim
 COPY --from=build /target/fdrts-transaction-0.0.1-SNAPSHOT.jar transaction.jar
 # ENV PORT=8081
-EXPOSE 8081
+EXPOSE 8083
 ENTRYPOINT ["java","-jar", "transaction.jar"]

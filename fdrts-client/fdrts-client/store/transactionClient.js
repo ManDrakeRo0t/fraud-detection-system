@@ -66,7 +66,7 @@ export const actions = {
 
    connect(context) {
       if (!context.state.isConnected) {
-         let socket = new SockJS("http://localhost:8081/ws");
+         let socket = new SockJS("http://localhost:8083/ws");
          let client = Stomp.over(socket);
          client.debug = () => {};
          socket.debug = () => {};

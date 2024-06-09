@@ -4,15 +4,15 @@
          <div class="container" style="width: 80%">
             <div class="row mt-2">
                <input type="text" style="margin-bottom: 10px" id="parentName" v-model="firstName" class="form-control"
-                      placeholder="First name" required autofocus>
+                      placeholder="Имя" required autofocus>
             </div>
             <div class="row mt-2">
                <input type="text" style="margin-bottom: 10px" id="parentName" v-model="lastName" class="form-control"
-                      placeholder="Last name" required autofocus>
+                      placeholder="Фамилия" required autofocus>
             </div>
             <div class="row mt-2">
                <input type="text" style="margin-bottom: 10px" id="parentName" v-model="job" class="form-control"
-                      placeholder="Job" required autofocus>
+                      placeholder="Место работы" required autofocus>
             </div>
             <div class="row mt-2">
                <b-form-datepicker id="example-datepicker" v-model="dob" class="mb-2"></b-form-datepicker>
@@ -29,7 +29,7 @@
                   </l-map>
                </client-only>
             </div>
-            <b-button class="mt-3" @click="create" variant="primary" >create</b-button>
+            <b-button class="mt-3" @click="create" variant="primary" >Создать</b-button>
          </div>
       </div>
       <div class="close" @click="$emit('close-modal')">

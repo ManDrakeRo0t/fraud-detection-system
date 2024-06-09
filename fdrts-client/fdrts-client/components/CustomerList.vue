@@ -9,7 +9,13 @@ export default {
    name: "CustomerList",
    data () {
       return {
-         fields : ["ccNum", "firstName", "lastName", "street", "city", "job"],
+         fields : [{key: "ccNum", label : "Номер пользователя"},
+            {key: "firstName", label : "Имя"},
+            {key: "lastName", label : "Фамилия"},
+            {key: "street", label : "Улица"},
+            {key: "city", label : "Город"},
+            {key: "job", label : "Место работы"}
+         ],
          list : [],
          lastToken: null
       }

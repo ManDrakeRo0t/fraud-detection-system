@@ -1,8 +1,10 @@
 package ru.bogatov.fdrtscore.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.multipart.MultipartFile;
 import ru.bogatov.fdrtscore.model.database.jooq.tables.pojos.Customer;
 import ru.bogatov.fdrtscore.model.database.jooq.tables.pojos.Merchant;
 import ru.bogatov.fdrtscore.model.dto.migration.DatasetLine;
@@ -12,6 +14,8 @@ import ru.bogatov.fdrtscore.model.dto.TransactionEvent;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.*;
@@ -29,16 +33,18 @@ public class MigrationService {
     private final TransactionSenderService senderService;
 
     private final MigrationResult state;
+    private final ResourceLoader resourceLoader;
 
-    private File migrationData;
+    private InputStream migrationData;
 
     private int batchSize = 100;
 
 
-    public MigrationService(CustomerService customerService, MerchantService merchantService, TransactionSenderService senderService) {
+    public MigrationService(CustomerService customerService, MerchantService merchantService, TransactionSenderService senderService, ResourceLoader resourceLoader) {
         this.customerService = customerService;
         this.merchantService = merchantService;
         this.senderService = senderService;
+        this.resourceLoader = resourceLoader;
         state = MigrationResult.builder()
                 .status(MigrationStatus.NOT_STARTED)
                 .createdCustomers(0)
@@ -53,7 +59,8 @@ public class MigrationService {
     }
 
 
-    public String start() {
+
+    public String start(MultipartFile file) {
         if (!isStartPossible()) {
             return "Start not possible, migration in progress";
         }
@@ -73,9 +80,17 @@ public class MigrationService {
             Set<String> createdCustomers = new HashSet<>();
             Set<String> createdMerchants = new HashSet<>();
 
-
+            Scanner scanner = null;
             try {
-                Scanner scanner = loadFile();
+                if (file == null) {
+                    scanner = loadFile();
+                } else {
+                    try {
+                        scanner = convertFile(file);
+                    } catch (Exception e) {
+                        log.error("Can convert file, {}", e.getMessage());
+                    }
+                }
 
 
                 List<String> values = readBatch(scanner);
@@ -134,9 +149,19 @@ public class MigrationService {
         return state.getStatus() != MigrationStatus.IN_PROGRESS;
     }
 
-    private Scanner loadFile() throws FileNotFoundException {
-        migrationData = ResourceUtils.getFile("classpath:static/fraudTrain.csv");
+    private Scanner loadFile() throws IOException {
+
+        migrationData = resourceLoader.getResource("classpath:static/fraudTrain.csv").getInputStream();
         Scanner scanner = new Scanner(migrationData);
+        scanner.nextLine();
+        return scanner;
+    }
+
+    private Scanner convertFile(MultipartFile file) throws IOException {
+        //File saved = new File("src/main/resources/static/data.csv");
+        File newFile = new File(file.getOriginalFilename());
+
+        Scanner scanner = new Scanner(newFile);
         scanner.nextLine();
         return scanner;
     }

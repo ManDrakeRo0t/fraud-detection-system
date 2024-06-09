@@ -1,5 +1,3 @@
-
-
 <template>
    <div  class="container" style="overflow-y: scroll; height:90vh;" @scroll="handleScroll">
       <b-table striped hover :items="list" :fields="fields" @row-clicked="handleRowClick"></b-table>
@@ -11,7 +9,7 @@ export default {
    name: "MerchantList",
    data () {
       return {
-         fields : ["id" , "name"],
+         fields : [{key: "id", label : "Идентификатор"}, {key: "name", label : "Имя"}],
          list : [],
          lastToken: null
       }

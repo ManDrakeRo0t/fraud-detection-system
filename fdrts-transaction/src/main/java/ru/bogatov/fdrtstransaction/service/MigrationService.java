@@ -1,6 +1,7 @@
 package ru.bogatov.fdrtstransaction.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
@@ -10,6 +11,8 @@ import ru.bogatov.fdrtstransaction.model.dto.migration.MigrationStatus;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
@@ -25,13 +28,16 @@ public class MigrationService {
 
     private final MigrationResult state;
 
-    private File migrationData;
+    private InputStream migrationData;
 
     private int batchSize = 200;
 
+    private final ResourceLoader resourceLoader;
 
-    public MigrationService(TransactionService transactionService) {
+
+    public MigrationService(TransactionService transactionService, ResourceLoader resourceLoader) {
         this.transactionService = transactionService;
+        this.resourceLoader = resourceLoader;
 
         state = MigrationResult.builder()
                 .status(MigrationStatus.NOT_STARTED)
@@ -105,8 +111,8 @@ public class MigrationService {
         return state.getStatus() != MigrationStatus.IN_PROGRESS;
     }
 
-    private Scanner loadFile() throws FileNotFoundException {
-        migrationData = ResourceUtils.getFile("classpath:static/fraudTrain.csv");
+    private Scanner loadFile() throws IOException {
+        migrationData = resourceLoader.getResource("classpath:static/fraudTrain.csv").getInputStream();
         Scanner scanner = new Scanner(migrationData);
         scanner.nextLine();
         return scanner;

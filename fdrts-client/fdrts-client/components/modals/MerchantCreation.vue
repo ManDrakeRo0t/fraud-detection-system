@@ -4,7 +4,7 @@
          <div class="container" style="width: 80%">
             <div class="row mt-2">
                <input type="text" style="margin-bottom: 10px" id="parentName" v-model="name" class="form-control"
-                      placeholder="First name" required autofocus>
+                      placeholder="Имя" required autofocus>
             </div>
             <div id="map-wrap2" style="height: 25vh; width: 60vh">
                <client-only>
@@ -18,7 +18,7 @@
                   </l-map>
                </client-only>
             </div>
-            <b-button class="mt-3" @click="create" variant="primary" >create</b-button>
+            <b-button class="mt-3" @click="create" variant="primary" >Создать</b-button>
          </div>
       </div>
       <div class="close" @click="$emit('close-modal')">

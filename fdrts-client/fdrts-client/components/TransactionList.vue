@@ -11,7 +11,12 @@ export default {
    props: ["transactions"],
    data () {
       return {
-         fields : [{ key :"isFraud", sortable: true}, "ccNum", "merchantName", "category", "amount", "dateTime"]
+         fields : [{ key :"isFraud", sortable: true, label : "Мошенническая"},
+            {key: "ccNum", label : "Номер клиента"},
+            {key: "merchantName", label : "Продавец"},
+            {key: "category", label : "Категория"},
+            {key: "amount", label : "Сумма"},
+            {key: "dateTime", label : "Время"}]
       }
    },
    methods : {

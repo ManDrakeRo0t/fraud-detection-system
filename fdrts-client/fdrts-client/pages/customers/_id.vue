@@ -7,22 +7,22 @@
       <div class="container" v-if="isLoaded" >
 
          <div class="mt-4 md-4">
-            <h4>Customer details :</h4>
+            <h4>Информация о пользователе :</h4>
          </div>
 
          <div style="border-radius: 20px; background-color: #f0f0f0; display: flex; flex-direction: row; justify-content: space-between">
             <div class="mt-5">
                <div>
-                  <span>Num : <strong>{{this.customer.ccNum}}</strong></span>
+                  <span>Номер : <strong>{{this.customer.ccNum}}</strong></span>
                </div>
                <div>
-                  <span>Name : <strong>{{this.customer.firstName}} {{this.customer.lastName}}</strong></span>
+                  <span>Имя : <strong>{{this.customer.firstName}} {{this.customer.lastName}}</strong></span>
                </div>
                <div>
-                  <span>Address : <strong>[ {{this.customer.state}} {{this.customer.zip}} ] {{this.customer.city}} {{this.customer.street}}</strong></span>
+                  <span>Адрес : <strong>[ {{this.customer.state}} {{this.customer.zip}} ] {{this.customer.city}} {{this.customer.street}}</strong></span>
                </div>
                <div>
-                  <span>Job : <strong>{{this.customer.job}}</strong></span>
+                  <span>Место работы : <strong>{{this.customer.job}}</strong></span>
                </div>
             </div>
 
@@ -36,7 +36,7 @@
          </div>
 
          <div class="mt-4" >
-            <h4>Transactions : </h4>
+            <h4>Транзакции : </h4>
             <TransactionList :transactions="transactions" ></TransactionList>
          </div>
 
@@ -69,7 +69,7 @@ export default {
       this.$axios.get("/api/customer/" + this.ccNum).then((res) => {
          this.customer = res.data
       })
-      this.$axios.setBaseURL("http://localhost:8081")
+      this.$axios.setBaseURL("http://localhost:8083")
       this.$axios.get("/api/transaction/customer/" + this.ccNum).then((res) => {
          this.transactions = res.data
          this.isLoaded = true

@@ -8,16 +8,16 @@
       <div class="container" v-if="isLoaded" >
 
          <div class="mt-4 md-4">
-            <h4>Merchant details :</h4>
+            <h4>Информация о продавце :</h4>
          </div>
 
          <div style="border-radius: 20px; background-color: #f0f0f0;  display: flex; flex-direction: row; justify-content: space-between">
             <div class="mt-5">
                <div>
-                  <span>Id : <strong>{{this.merchant.id}}</strong></span>
+                  <span>Идентификатор : <strong>{{this.merchant.id}}</strong></span>
                </div>
                <div>
-                  <span>Name : <strong>{{this.merchant.name}} </strong></span>
+                  <span>Имя : <strong>{{this.merchant.name}} </strong></span>
                </div>
             </div>
 
@@ -31,7 +31,7 @@
          </div>
 
          <div class="mt-4" >
-            <h4>Transactions : </h4>
+            <h4>Транзакции : </h4>
             <TransactionList :transactions="transactions" ></TransactionList>
          </div>
 
@@ -63,7 +63,7 @@ export default {
       this.$axios.get("/api/merchant/" + this.id).then((res) => {
          this.merchant = res.data
       })
-      this.$axios.setBaseURL("http://localhost:8081")
+      this.$axios.setBaseURL("http://localhost:8083")
       this.$axios.get("/api/transaction/merchant/" + this.id).then((res) => {
          this.transactions = res.data
          this.isLoaded = true

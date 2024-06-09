@@ -11,7 +11,7 @@ export function initConnection() {
 
       connectHeaders: {},
 
-      brokerURL: "ws://localhost:8081/ws",
+      brokerURL: "ws://localhost:8083/ws",
       reconnectDelay: 200,
 
       onConnect: function (frame) {
@@ -25,7 +25,7 @@ export function initConnection() {
    };
 
       if (!isConnected) {
-         socket = new SockJS("ws://localhost:8081/ws");
+         socket = new SockJS("ws://localhost:8083/ws");
          socket.activate()
          isConnected = true;
       }
