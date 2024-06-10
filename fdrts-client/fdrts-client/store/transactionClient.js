@@ -7,11 +7,16 @@ export const state = () => (
       client: null,
       transactions: [],
       transactionsTime : [],
-      transactionMap : []
+      transactionMap : [],
+      removeFraudTransactions : true
    }
 )
 
 export const mutations = {
+
+   setRemoveFraudTransactions(state) {
+      state.removeFraudTransactions = !state.removeFraudTransactions
+   },
 
    setConnected(state, flag) {
       state.isConnected = flag

@@ -11,7 +11,7 @@
             <h4>Информация о продавце :</h4>
          </div>
 
-         <div style="border-radius: 20px; background-color: #f0f0f0;  display: flex; flex-direction: row; justify-content: space-between">
+         <div style="padding: 20px; border-radius: 20px; background-color: #f0f0f0;  display: flex; flex-direction: row; justify-content: space-between">
             <div class="mt-5">
                <div>
                   <span>Идентификатор : <strong>{{this.merchant.id}}</strong></span>

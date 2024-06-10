@@ -30,6 +30,19 @@
             <b-dropdown-item @click="transactionCreationModal=true">Создать транзакцию</b-dropdown-item>
             <b-dropdown-divider></b-dropdown-divider>
             <b-dropdown-item @click="transactionEmulationModal=true">Эмуляция активности</b-dropdown-item>
+            <b-dropdown-divider></b-dropdown-divider>
+<!--            <b-dropdown-item>-->
+<!--               <div>-->
+<!--                  <b-form-checkbox-->
+<!--                     id="checkbox-1"-->
+<!--                     name="checkbox-1"-->
+<!--                     value="accepted"-->
+<!--                     unchecked-value="not_accepted"-->
+<!--                  >-->
+<!--                     Удалять мошеннические транзакции-->
+<!--                  </b-form-checkbox>-->
+<!--               </div>-->
+<!--            </b-dropdown-item>-->
          </b-nav-item-dropdown>
       </b-nav>
    </div>

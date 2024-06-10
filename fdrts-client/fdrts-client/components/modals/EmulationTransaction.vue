@@ -4,8 +4,8 @@
       <div class="modal-my">
          <div class="container" style="width: 80%">
             <div>
-               <div class="mb-2">
-                  <label class="mr-5" for="delay">Задержка</label>
+               <div class="mb-2" style="display: flex; justify-content: space-between">
+                  <label class="" for="delay">Задержка</label>
                   <b-form-spinbutton inline
                                      id="delay"
                                      v-model="delay"
@@ -14,8 +14,8 @@
                                      step="5"
                   ></b-form-spinbutton>
                </div>
-               <div class="mb-2">
-                  <label class="mr-5" for="count">Кол-во</label>
+               <div class="mb-2" style="display: flex; justify-content: space-between">
+                  <label class="" for="count">Кол-во</label>
                   <b-form-spinbutton inline
                                      id="count"
                                      v-model="count"
@@ -24,8 +24,8 @@
                                      step="20"
                   ></b-form-spinbutton>
                </div>
-               <div>
-                  <label class="mr-3" for="fraud">Мошенничество</label>
+               <div style="display: flex; justify-content: space-between">
+                  <label class="" for="fraud">Мошенничество</label>
                   <b-form-spinbutton inline
                                      id="fraud"
                                      v-model="fraud"
